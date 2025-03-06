@@ -85,7 +85,8 @@ def show_result(city, weather):
     link_label.bind("<Button-1>", lambda e: open_weather_link())  # Open link when clicked
 
     return result_window
-
+     # 🔹 Add Exit Button in Result Window
+    add_exit_button(result_window)
     return result_window  # Keeps the window open
 
 # 🔹 Save City to History
@@ -176,7 +177,22 @@ view_saved_button.place(relx=0.5, rely=0.93, anchor="center")  # Adjusted for vi
 # 🔹 "Contact Us" in Bottom-Right Corner (No Background)
 contact_label = tk.Label(root, text="Contact Us", fg="blue", cursor="hand2",
                          font=("Arial", 10, "underline"))
-contact_label.place(relx=0.98, rely=0.98, anchor="se")
+contact_label.place(relx=1.0, rely=0.99, anchor="se")
+
+# 🔹 Function to Exit the Application
+def exit_app():
+    root.quit()  # Closes the entire application
+
+# 🔹 Exit Button for Main Window (Bottom-Right Corner)
+exit_button_main = tk.Button(root, text="Exit", font=("Arial", 12, "bold"), bg="red", fg="white",
+                             relief="flat", padx=10, pady=5, command=exit_app)
+exit_button_main.place(relx=0.95, rely=0.97, anchor="se")  # Placed at bottom-right corner
+
+# 🔹 Function to Add Exit Button to Result Window
+def add_exit_button(window):
+    exit_button = tk.Button(window, text="Exit", font=("Arial", 10, "bold"), bg="red", fg="white",
+                            relief="flat", padx=10, pady=5, command=window.destroy)
+    exit_button.place(relx=0.95, rely=0.97, anchor="se")  # Placed at bottom-right corner
 
 # Run application
 root.mainloop()
